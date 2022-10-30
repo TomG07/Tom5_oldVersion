@@ -18,7 +18,7 @@ If you do not comply, you will be instantly banned permanently or temporarily (i
 
 ## Links
 - [TomG](https://cdn.discordapp.com/users/541030181616222218) - Owner & Main Developer
-- [linuxon](https://cdn.discordapp.com/users/888414506215145493) - Responsible for Tom5's New System Ideas & Secondary Developer
+- [linuxon](https://cdn.discordapp.com/users/888414506215145493) - Responsible for Tom5's New System Ideas & Sub Developer
 - [Dev Hub](https://discord.gg/nqWy7YuK4d) - Support Server
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Programming language
 - [Node.js](https://nodejs.org/en/) - JavaScript builder
