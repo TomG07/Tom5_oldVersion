@@ -23,18 +23,18 @@ export default class MusicManager extends Vulkava {
         super(
             {
                 nodes: [
-                    {
-                        hostname: "lavatom5.squareweb.app",
-                        port: 443,
-                        id: "Verão",
-                        maxRetryAttempts: 300,
-                        password: "tomasfrazao2007",
-                        region: "EU",
-                        secure: true,
-                        followRedirects: true,
-                        resumeKey: "resuming",
-                        resumeTimeout: 240_000
-                    }
+                    // {
+                    //     hostname: "lavatom5.squareweb.app",
+                    //     port: 443,
+                    //     id: "Verão",
+                    //     maxRetryAttempts: 300,
+                    //     password: "tomasfrazao2007",
+                    //     region: "EU",
+                    //     secure: true,
+                    //     followRedirects: true,
+                    //     resumeKey: "resuming",
+                    //     resumeTimeout: 240_000
+                    // }
                 ],
 
                 sendWS(guildId, payload) {
@@ -113,22 +113,35 @@ export default class MusicManager extends Vulkava {
 
         this.on("trackStart", async (player: Player, track) => {
 
-            const playerChannel: Channel | any = this.client.channels.cache.get(player.textChannelId)
+            const playerChannel: Channel | any = this.client.channels.cache.get(player.textChannelId || "")
 
-            if(player.lastPlayerMessageId) {
+            var lastPlayerMessageId = await this.client.guildDB.findOne({ guildId: player.guildId }).then(x => x?.player?.lastPlayerMessageId)
 
-                const msg: Message = playerChannel.messages.cache.get(player.lastPlayerMessageId)
+            if(lastPlayerMessageId) {
+
+                const msg: Message = playerChannel.messages.cache.get(lastPlayerMessageId)
 
                 if(msg) msg.delete()
             }
 
-            player.lastPlayerMessageId = await playerChannel.send({
+            lastPlayerMessageId = await playerChannel.send({
                 embeds: [
                     new EmbedBuilder()
                     .setColor("#2a2d31")
                     .setDescription(`**(<:tom5_playing_now:1023251385019531275>) [${track.title.substring(0, 40)}](${track.uri}) começou a tocar.**`)
                 ]
             }).then((msg: Message) => msg.id)
+
+            await this.client.guildDB.findOneAndUpdate(
+                { 
+                    guildId: player.guildId 
+                }, 
+                { 
+                    player: { 
+                        lastPlayerMessageId: lastPlayerMessageId 
+                    } 
+                }
+            )
 
             if(endQueue) clearTimeout(endQueue)
 
@@ -144,7 +157,7 @@ export default class MusicManager extends Vulkava {
 
         this.on("queueEnd", (player) => {
 
-            let canal: Channel | any = this.client.guilds.cache.get(player.guildId)?.channels.cache.get(player.textChannelId)
+            let canal: Channel | any = this.client.guilds.cache.get(player.guildId)?.channels.cache.get(player.textChannelId || "")
 
             canal.send({
                 embeds: [

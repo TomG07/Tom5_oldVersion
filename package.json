@@ -5,7 +5,7 @@
   "main": "./src/launcher.ts",
   "type": "module",
   "scripts": {
-    "builder": "npm i ts-node typescript",
+    "builder": "npm i",
     "start": "ts-node src/launcher.ts"
   },
   "author": "",

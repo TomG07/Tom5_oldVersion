@@ -10,8 +10,10 @@ const shema = new Schema({
             default: 1
         },
         player: {
-            type: Object,
-            default: null
+            lastPlayerMessageId: {
+                type: String,
+                default: null
+            }
         }
     }
 )
