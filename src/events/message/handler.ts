@@ -1,4 +1,4 @@
-import { EmbedBuilder, Message } from "discord.js";
+import { EmbedBuilder, Message, TextChannel } from "discord.js";
 import i18next, { TFunction } from "i18next";
 import Event from "../../classes/event.js";
 import Tom5 from "../../classes/Tom5.js";
@@ -137,9 +137,11 @@ export default class extends Event {
     
                         console.log("Comando igual e prob maior ou igual a 0.9");                    
     
-                        let comandoSlash = this.client.application?.commands.cache.find(c => c.name == command.name)                        
+                        let comandoSlash = this.client.application?.commands.cache.find(c => c.name == command.name)   
+                        
+                        const channel = message.channel as TextChannel
     
-                        message.channel.send(
+                        channel.send(
                             {
                                 content: `${message.author}`,
                                 embeds: [
