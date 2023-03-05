@@ -1,6 +1,5 @@
 import chalk from "chalk"
 import mongoose, { Model } from "mongoose"
-import botConfig from "../../configs/token"
 import Tom5 from "../Tom5";
 
 export default class DatabaseManager {
@@ -19,7 +18,7 @@ export default class DatabaseManager {
 
         try {
 
-            await mongoose.connect(botConfig.databaseToken, {
+            await mongoose.connect(process.env.DB_TOKEN || "", {
                 dbName: "Tom5",
             })
 

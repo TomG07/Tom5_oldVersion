@@ -1,5 +1,4 @@
 import { ActivityType, Client, GatewayIntentBits, Message } from 'discord.js'
-import botConfig from '../configs/token.js'
 import SpotifyManager from '../functions/spotify.js'
 import CommandsManager from './managers/commandsManager'
 import DatabaseManager from './managers/databaseManager.js'
@@ -77,7 +76,7 @@ export default class Tom5 extends Client {
 
     async start(): Promise<void> {
 
-        await super.login(process.env.DISCORD_TOKEN || botConfig.token)
+        await super.login(process.env.DISCORD_TOKEN)
 
         await this.commands.loadCommands()
         await this.events.loadEvents()
