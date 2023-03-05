@@ -23,18 +23,18 @@ export default class MusicManager extends Vulkava {
         super(
             {
                 nodes: [
-                    // {
-                    //     hostname: "lavatom5.squareweb.app",
-                    //     port: 443,
-                    //     id: "Verão",
-                    //     maxRetryAttempts: 300,
-                    //     password: "tomasfrazao2007",
-                    //     region: "EU",
-                    //     secure: true,
-                    //     followRedirects: true,
-                    //     resumeKey: "resuming",
-                    //     resumeTimeout: 240_000
-                    // }
+                    {
+                        hostname: "lavatom5.squareweb.app",
+                        port: 443,
+                        id: "Verão",
+                        maxRetryAttempts: 300,
+                        password: "tomasfrazao2007",
+                        region: "EU",
+                        secure: true,
+                        followRedirects: true,
+                        resumeKey: "resuming",
+                        resumeTimeout: 240_000
+                    }
                 ],
 
                 sendWS(guildId, payload) {
@@ -95,9 +95,9 @@ export default class MusicManager extends Vulkava {
             // }
         })
 
-        this.on("nodeDisconnect", (node, code, reaosn) => {
-            console.log(chalk.red.bold("[LAVALINK - NODES]"), `- ${node.identifier} desconectado.\n\nCódigo de erro: ${code}\n\nMotivo: ${reaosn}`)
-        })
+        // this.on("nodeDisconnect", (node, code, reaosn) => {
+        //     console.log(chalk.red.bold("[LAVALINK - NODES]"), `- ${node.identifier} desconectado.\n\nCódigo de erro: ${code}\n\nMotivo: ${reaosn}`)
+        // })
 
         this.on("pong", (node) => {
             console.log(chalk.green("[LAVALINK]"), `- Pong recebido do node ${node.identifier}`)
