@@ -63,36 +63,36 @@ export default class MusicManager extends Vulkava {
         this.on("nodeConnect", async (node) => {
             console.log(chalk.green("[LAVALINK - NODES]"), `- ${node.identifier} conectado`)
 
-            let guilds = await this.client.guildDB.find({ player: !null })
+            // let guilds = await this.client.guildDB.find({ player: !null })
 
-            if(guilds.length > 0) {
-                for(let i = 0; i < guilds.length; i++) {
+            // if(guilds.length > 0) {
+            //     for(let i = 0; i < guilds.length; i++) {
 
-                    let guild = await this.client.guilds.fetch(guilds[i].guildId)
+            //         let guild = await this.client.guilds.fetch(guilds[i].guildId)
 
-                    let player = this.client.vulkava.createPlayer({
-                        guildId: guild.id,
-                        queue: guilds[i].player?.queue,
-                        selfDeaf: guilds[i].player?.selfDeaf,
-                        selfMute: guilds[i].player?.selfMute,
-                        textChannelId: guilds[i].player.textChannelId,
-                        voiceChannelId: guilds[i].player.voiceChannelId,
-                    })
+            //         let player = this.client.vulkava.createPlayer({
+            //             guildId: guild.id,
+            //             queue: guilds[i].player?.queue,
+            //             selfDeaf: guilds[i].player?.selfDeaf,
+            //             selfMute: guilds[i].player?.selfMute,
+            //             textChannelId: guilds[i].player.textChannelId,
+            //             voiceChannelId: guilds[i].player.voiceChannelId,
+            //         })
 
-                    player.setTrackLoop(guilds[i].player.trackRepeat)
-                    player.setQueueLoop(guilds[i].player.queueRepeat)
-                    player.filters.set(guilds[i].player.filters.options)
-                    player.lastPlayerMessageId = guilds[i].player.lastPlayerMessageId
-                    player.node = guilds[i].player.node
+            //         player.setTrackLoop(guilds[i].player.trackRepeat)
+            //         player.setQueueLoop(guilds[i].player.queueRepeat)
+            //         player.filters.set(guilds[i].player.filters.options)
+            //         player.lastPlayerMessageId = guilds[i].player.lastPlayerMessageId
+            //         player.node = guilds[i].player.node
 
-                    player.connect()
+            //         player.connect()
 
-                    player.play({
-                        startTime: guilds[i].player.position,
-                        pause: guilds[i].player.paused
-                    })
-                }
-            }
+            //         player.play({
+            //             startTime: guilds[i].player.position,
+            //             pause: guilds[i].player.paused
+            //         })
+            //     }
+            // }
         })
 
         this.on("nodeDisconnect", (node, code, reaosn) => {

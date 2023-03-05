@@ -5,6 +5,7 @@
   "main": "./src/launcher.ts",
   "type": "module",
   "scripts": {
+    "build": "npm i -g ts-node typescript",
     "test": "ts-node src/launcher.ts",
     "start": "nodemon src/launcher.ts"
   },
