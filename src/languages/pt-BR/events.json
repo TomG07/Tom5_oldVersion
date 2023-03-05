@@ -1,0 +1,25 @@
+{
+    "client": {
+
+    },
+
+    "interaction": {
+
+    },
+
+    "message": {
+        "handler": {
+            "msgSlash": "Já experimentou os meus comandos de barra?\n\n**Este comando exite na forma de Slash Command!** Experimente-o já [ {{slash}} ]\n\nNo futuro, os comandos via prefixo serão removidos. **Para saberes mais quais comandos deixaram de existir em prefixo**, entra no servidor da comunidade do Tom5!",
+
+            "cmdNaoExistente": "**({{emoji}}) O comando `{{command}}` não existe!**"
+        },
+
+        "mention": {
+            "content": "**>>> (<:tom5_icons_wave:1014591822057713674>) Olá <@{{author}}>, precisas de ajuda?\n(<:tom5_icons_store:1013545540950184047>) O meu prefixo é `{{prefix}}`\n(<:tom5_icons_info:1013545468933972140>) Comando de ajuda: `t.help`\n(<:tom5_icons_question:1013546739170558135>) Mais informações em `t.botinfo`**",
+
+            "embed": "Já experimentou os meus comandos de barra?\n\n**Este comando exite na forma de Slash Command!** Experimente-o já [ {{slash}} ]\n\nNo futuro, os comandos via prefixo serão removidos. **Para saberes mais quais comandos deixaram de existir em prefixo**, entra no servidor da comunidade do Tom5!",
+
+            "button": "Adiciona-me!"
+        }
+    }
+}

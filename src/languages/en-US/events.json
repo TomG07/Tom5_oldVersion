@@ -1,0 +1,25 @@
+{
+    "client": {
+
+    },
+
+    "interaction": {
+
+    },
+
+    "message": {
+        "handler": {
+            "msgSlash": "Have you tried my slash commands yet?\n\n**This command exists in the form of Slash Command!** Try it now [ {{slash}} ]\n\nCommands via prefix will be removed in the future. **To find out more which commands no longer exist in prefix**, enter the Tom5 community server!",
+
+            "cmdNaoExistente": "**({{emoji}}) The command `{{command}}` does not exist!**"
+        },
+
+        "mention": {
+            "content": "**>>> (<:tom5_icons_wave:1014591822057713674>) Hello <@{{author}}>, need help?\n(<:tom5_icons_store:1013545540950184047>) My prefix is `{{prefix}}`\n(<:tom5_icons_info:1013545468933972140>) Help command: `t.help`\n(<:tom5_icons_question:1013546739170558135>) More info at `t.botinfo`**",
+
+            "embed": "Have you tried my slash commands yet?\n\n**This command exists in the form of Slash Command!** Try it now [ {{slash}} ]\n\nCommands via prefix will be removed in the future. **To find out more which commands no longer exist in prefix**, enter the Tom5 community server!",
+
+            "button": "Add me!"
+        }
+    }
+}

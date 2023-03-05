@@ -1,0 +1,25 @@
+{
+    "client": {
+
+    },
+
+    "interaction": {
+
+    },
+
+    "message": {
+        "handler": {
+            "msgSlash": "¿Ya probaste mis comandos de barra?\n\n**¡Este comando existe en forma de Comando de barra!** Pruébalo ahora [{{slash}} ]\n\nLos comandos mediante prefijo se eliminarán en el futuro. **Para obtener más información sobre qué comandos ya no existen en prefijo**, ¡ingrese al servidor de la comunidad Tom5!",
+
+            "cmdNaoExistente": "**({{emoji}}) ¡El comando `{{comando}}` no existe!**"
+        },
+        
+        "mention": {
+            "content": "**>>> (<:tom5_icons_wave:1014591822057713674>) Hola, <@{{author}}>, ¿necesitas ayuda?\n(<:tom5_icons_store:1013545540950184047>) Mi prefijo es `{{prefix}}`\n(<:tom5_icons_info:1013545468933972140>) Comando de ayuda: `t.help`\n(<:tom5_icons_question:1013546739170558135>) Más información en `t.botinfo`**",
+
+            "embed": "¿Ya probaste mis comandos de barra?\n\n**¡Este comando existe en forma de Comando de barra!** Pruébalo ahora [ {{slash}} ]\n\nLos comandos mediante prefijo se eliminarán en el futuro. **Para obtener más información sobre qué comandos ya no existen en prefijo**, ¡ingrese al servidor de la comunidad Tom5!",
+
+            "button": "Agrégame!"
+        }
+    }
+}

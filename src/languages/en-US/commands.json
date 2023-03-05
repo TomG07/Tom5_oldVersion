@@ -1,0 +1,27 @@
+{
+    "musica": {
+        "play": {
+            "voiceChannel": "**({{emoji}}) Join a voice channel first**",
+            
+            "song": "**({{emoji}}) Indicate the song you want to hear**",
+
+            "loadTypes": {
+                "loadFailed": "**({{emoji}}) Error loading music. Try indicating the name of the song**",
+
+                "noMatches": "**({{emoji}}) No results**",
+
+                "playlistLoaded": "**({{emoji}}) Playlist `{{playlistName}}` loaded successfully**",
+
+                "searchResult": {
+                    "menuPlaceholder": "Select music",
+
+                    "selectMenuEmbed": "**({{emoji}}) Choose music from the menu below:**",
+
+                    "loadMusic": "**({{emoji}}) Song [{{title}}]({{uri}}) loaded successfully**"
+                },
+
+                "trackLoaded": "**({{emoji}}) Song [{{title}}]({{uri}}) loaded successfully**"
+            }
+        }
+    }
+}

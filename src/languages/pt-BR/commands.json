@@ -1,0 +1,62 @@
+{
+    "musica": {
+        "clear": {
+            "noPlayer": "**({{emoji}}) Não estou a tocar música no servidor**",
+
+            "semCanal": "**({{emoji}}) Entra num canal de voz primeiro**",
+
+            "mesmoCanal": "**({{emoji}}) Devemos estar no mesmo canal de voz [ <#{{voiceChannel}}> ]**",
+
+            "embed": "**({{emoji}}) Queue limpo com sucesso**"
+        },
+        
+        "filters": {
+            "noPlayer": "**({{emoji}}) Não estou a tocar música no servidor**",
+
+            "semCanal": "**({{emoji}}) Entra num canal de voz primeiro**",
+
+            "mesmoCanal": "**({{emoji}}) Devemos estar no mesmo canal de voz [ <#{{voiceChannel}}> ]**",
+            
+            "reply1": {
+                "embed": "",
+
+                "menu": {
+                    "placeholder": "",
+
+                    "options": [
+                        {
+                            "opção1": "sla"
+                        },
+                        {
+                            "opçao2": "sla2"
+                        }
+                    ]
+                }
+            }
+        },
+
+        "play": {
+            "voiceChannel": "**({{emoji}}) Entre num canal de voz primeiro**",
+            
+            "song": "**({{emoji}}) Indique a música que deseja ouvir**",
+
+            "loadTypes": {
+                "loadFailed": "**({{emoji}}) Falha ao carregar a música. Tente indicar o nome da música**",
+
+                "noMatches": "**({{emoji}}) Sem resultados",
+
+                "playlistLoaded": "**({{emoji}}) Lista de reprodução `{{playlistName}}` carregada com sucesso**",
+
+                "searchResult": {
+                    "menuPlaceholder": "Selecionar música",
+
+                    "selectMenuEmbed": "**({{emoji}}) Escolha a música no menu abaixo:**",
+
+                    "loadMusic": "**({{emoji}}) Música [{{title}}]({{uri}}) carregada com sucesso**"
+                },
+
+                "trackLoaded": "**({{emoji}}) Música [{{title}}]({{uri}}) carregada com sucesso**"
+            }
+        }
+    }
+}

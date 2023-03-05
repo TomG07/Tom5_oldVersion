@@ -1,0 +1,25 @@
+{
+    "client": {
+
+    },
+
+    "interaction": {
+
+    },
+
+    "message": {
+        "handler": {
+            "msgSlash": "Avez-vous déjà essayé mes commandes slash?\n\n**Cette commande existe sous la forme d'une commande slash!** Essayez-la maintenant [ {{slash}} ]\n\nLes commandes via le préfixe seront supprimées à l'avenir. **Pour en savoir plus sur les commandes qui n'existent plus en préfixe**, entrez sur le serveur de la communauté Tom5!",
+
+            "cmdNaoExistente": "**({{emoji}}) La commande `{{command}}` n'existe pas!**"
+        },
+
+        "mention": {
+            "content": "**>>> (<:tom5_icons_wave:1014591822057713674>) Bonjour <@{{author}}>, besoin d'aide?\n(<:tom5_icons_store:1013545540950184047>) Mon préfixe est `{{prefix}}`\n(<:tom5_icons_info:1013545468933972140>) Commande d'aide: `t.help`\n(<:tom5_icons_question:1013546739170558135>) Plus d'informations sur `t.botinfo`**",
+
+            "embed": "Avez-vous déjà essayé mes commandes slash?\n\n**Cette commande existe sous la forme d'une commande slash!** Essayez-la maintenant [ {{slash}} ]\n\nLes commandes via le préfixe seront supprimées à l'avenir. **Pour en savoir plus sur les commandes qui n'existent plus en préfixe**, entrez sur le serveur de la communauté Tom5!",
+
+            "button": "Ajoutez-moi!"
+        }
+    }
+}
