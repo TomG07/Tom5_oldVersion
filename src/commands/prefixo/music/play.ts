@@ -66,8 +66,8 @@ export default class extends Command {
             }
                 
             const player = this.client.vulkava.createPlayer({
-                guildId: ctx.message.guild?.id,
-                voiceChannelId: ctx.message.member?.voice.channel?.id,
+                guildId: ctx.message.guild?.id || "",
+                voiceChannelId: ctx.message.member?.voice.channel?.id || "",
                 textChannelId: ctx.message.channel.id,
                 selfDeaf: true,
                 selfMute: false
