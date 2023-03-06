@@ -103,9 +103,9 @@ export default class MusicManager extends Vulkava {
             console.log(chalk.green("[LAVALINK]"), `- Pong recebido do node ${node.identifier}`)
         })
 
-        this.on("error", (node, error) => {
-            console.log(chalk.red.bold("[LAVALINK - ERRO]"), `- ${node.identifier} não conectado.\n\nErro: ${error.message}`)
-        })
+        // this.on("error", (node, error) => {
+        //     console.log(chalk.red.bold("[LAVALINK - ERRO]"), `- ${node.identifier} não conectado.\n\nErro: ${error.message}`)
+        // })
 
         this.on("warn", (node, warn) => {
             console.log(chalk.yellow.bold("[LAVALINK - AVISO]"), `- ${node.identifier} avisado.\n\nAviso: ${warn}`)
