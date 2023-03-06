@@ -17,7 +17,7 @@ export default class Tom5 extends Client {
     public prefix: String
     public events: EventsManager
     public commands: CommandsManager 
-    // public vulkava: MusicManager
+    public vulkava: /*MusicManager | */any
     public _emojis!: { 
         certo: string; 
         errado: string; 
@@ -67,7 +67,7 @@ export default class Tom5 extends Client {
         this.prefix = "t."
         this.commands = new CommandsManager(this)
         this.events = new EventsManager(this)
-        // this.vulkava = new MusicManager(this, new SpotifyManager(this))
+        this.vulkava = /*new MusicManager(this, new SpotifyManager(this)) ||*/ null
         this.database = new DatabaseManager(this)
         this.userDB = UserDB
         this.guildDB = GuildDB
