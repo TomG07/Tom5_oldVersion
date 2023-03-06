@@ -4,7 +4,7 @@ import CommandsManager from './managers/commandsManager'
 import DatabaseManager from './managers/databaseManager.js'
 import EmojisManager from './managers/emojisManager'
 import EventsManager from "./managers/eventsManager"
-import MusicManager from './managers/musicManager.js'
+// import MusicManager from './managers/musicManager.js'
 import UserDB from "../database/models/User";
 import GuildDB from "../database/models/Guild";
 import ClientDB from "../database/models/Client";
@@ -17,7 +17,7 @@ export default class Tom5 extends Client {
     public prefix: String
     public events: EventsManager
     public commands: CommandsManager 
-    public vulkava: MusicManager
+    // public vulkava: MusicManager
     public _emojis!: { 
         certo: string; 
         errado: string; 
@@ -67,7 +67,7 @@ export default class Tom5 extends Client {
         this.prefix = "t."
         this.commands = new CommandsManager(this)
         this.events = new EventsManager(this)
-        this.vulkava = new MusicManager(this, new SpotifyManager(this))
+        // this.vulkava = new MusicManager(this, new SpotifyManager(this))
         this.database = new DatabaseManager(this)
         this.userDB = UserDB
         this.guildDB = GuildDB
@@ -83,7 +83,7 @@ export default class Tom5 extends Client {
 
         await this.commands.loadCommands()
         await this.events.loadEvents()
-        await this.vulkava.init()
+        // await this.vulkava.init()
         await new EmojisManager(this).loadEmojis();
         await this.database.start()
         await this.locales.loadLocales()
