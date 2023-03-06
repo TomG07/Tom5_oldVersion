@@ -28,20 +28,20 @@ export default class extends Event {
 
             let userDoc = await this.client.userDB.findOne(
                 {
-                    userId: interaction.user.id
+                    _id: interaction.user.id
                 }
             )
 
             let guildDoc = await this.client.guildDB.findOne(
                 {
-                    guildId: interaction.guild.id
+                    _id: interaction.guild.id
                 }
             )
 
             if(!userDoc) {
                 userDoc = await new this.client.userDB(
                     {
-                        userId: interaction.user.id
+                        _id: interaction.user.id
                     }
                 ).save()
             }
@@ -49,7 +49,7 @@ export default class extends Event {
             if(!guildDoc) {
                 guildDoc = await new this.client.guildDB(
                     {
-                        guildId: interaction.guild.id
+                        _id: interaction.guild.id
                     }
                 ).save()
             }

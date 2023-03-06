@@ -15,10 +15,7 @@ export default class extends Event {
             }
         ),
         this.client = client
-        this.execute = async () => {
-
-            
-
+        this.execute = () => {
             console.log(chalk.bold.green("[CLIENT]"), '- Conectado')
         }
     }

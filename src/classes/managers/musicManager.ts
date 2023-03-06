@@ -24,13 +24,13 @@ export default class MusicManager extends Vulkava {
             {
                 nodes: [
                     {
-                        hostname: "lavatom5.squareweb.app",
-                        port: 443,
+                        hostname: "localhost",
+                        port: 8080,
                         id: "Verão",
                         maxRetryAttempts: 300,
                         password: "tomasfrazao2007",
                         region: "EU",
-                        secure: true,
+                        secure: false,
                         followRedirects: true,
                         resumeKey: "resuming",
                         resumeTimeout: 240_000
@@ -60,40 +60,40 @@ export default class MusicManager extends Vulkava {
 
         let endQueue: NodeJS.Timeout | null;
 
-        this.on("nodeConnect", async (node) => {
-            console.log(chalk.green("[LAVALINK - NODES]"), `- ${node.identifier} conectado`)
+        // this.on("nodeConnect", async (node) => {
+        //     console.log(chalk.green("[LAVALINK - NODES]"), `- ${node.identifier} conectado`)
 
-            // let guilds = await this.client.guildDB.find({ player: !null })
+        //     // let guilds = await this.client.guildDB.find({ player: !null })
 
-            // if(guilds.length > 0) {
-            //     for(let i = 0; i < guilds.length; i++) {
+        //     // if(guilds.length > 0) {
+        //     //     for(let i = 0; i < guilds.length; i++) {
 
-            //         let guild = await this.client.guilds.fetch(guilds[i].guildId)
+        //     //         let guild = await this.client.guilds.fetch(guilds[i].guildId)
 
-            //         let player = this.client.vulkava.createPlayer({
-            //             guildId: guild.id,
-            //             queue: guilds[i].player?.queue,
-            //             selfDeaf: guilds[i].player?.selfDeaf,
-            //             selfMute: guilds[i].player?.selfMute,
-            //             textChannelId: guilds[i].player.textChannelId,
-            //             voiceChannelId: guilds[i].player.voiceChannelId,
-            //         })
+        //     //         let player = this.client.vulkava.createPlayer({
+        //     //             guildId: guild.id,
+        //     //             queue: guilds[i].player?.queue,
+        //     //             selfDeaf: guilds[i].player?.selfDeaf,
+        //     //             selfMute: guilds[i].player?.selfMute,
+        //     //             textChannelId: guilds[i].player.textChannelId,
+        //     //             voiceChannelId: guilds[i].player.voiceChannelId,
+        //     //         })
 
-            //         player.setTrackLoop(guilds[i].player.trackRepeat)
-            //         player.setQueueLoop(guilds[i].player.queueRepeat)
-            //         player.filters.set(guilds[i].player.filters.options)
-            //         player.lastPlayerMessageId = guilds[i].player.lastPlayerMessageId
-            //         player.node = guilds[i].player.node
+        //     //         player.setTrackLoop(guilds[i].player.trackRepeat)
+        //     //         player.setQueueLoop(guilds[i].player.queueRepeat)
+        //     //         player.filters.set(guilds[i].player.filters.options)
+        //     //         player.lastPlayerMessageId = guilds[i].player.lastPlayerMessageId
+        //     //         player.node = guilds[i].player.node
 
-            //         player.connect()
+        //     //         player.connect()
 
-            //         player.play({
-            //             startTime: guilds[i].player.position,
-            //             pause: guilds[i].player.paused
-            //         })
-            //     }
-            // }
-        })
+        //     //         player.play({
+        //     //             startTime: guilds[i].player.position,
+        //     //             pause: guilds[i].player.paused
+        //     //         })
+        //     //     }
+        //     // }
+        // })
 
         // this.on("nodeDisconnect", (node, code, reaosn) => {
         //     console.log(chalk.red.bold("[LAVALINK - NODES]"), `- ${node.identifier} desconectado.\n\nCódigo de erro: ${code}\n\nMotivo: ${reaosn}`)

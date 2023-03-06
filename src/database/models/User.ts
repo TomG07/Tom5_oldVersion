@@ -1,16 +1,12 @@
 import { model, Schema } from "mongoose";
 
-const shema = new class UserDB extends Schema {
-    constructor() {
-        super(
-            {
-                userId: {
-                    type: String,
-                    default: null
-                }
-            }
-        )
+const shema = new Schema(
+    {
+        _id: {
+            type: String,
+            default: null
+        }
     }
-}
+)
 
 export default model("users", shema)

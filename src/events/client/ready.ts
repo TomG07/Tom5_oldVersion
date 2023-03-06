@@ -11,7 +11,7 @@ export default class extends Event {
             {
                 eventName: "ready",
                 name: "ready",
-                once: false
+                once: true
             }
         ),
         this.client = client

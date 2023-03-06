@@ -21,16 +21,7 @@
                 "embed": "",
 
                 "menu": {
-                    "placeholder": "",
-
-                    "options": [
-                        {
-                            "opção1": "sla"
-                        },
-                        {
-                            "opçao2": "sla2"
-                        }
-                    ]
+                    "placeholder": ""
                 }
             }
         },

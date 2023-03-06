@@ -8,6 +8,7 @@ import MusicManager from './managers/musicManager.js'
 import UserDB from "../database/models/User";
 import GuildDB from "../database/models/Guild";
 import ClientDB from "../database/models/Client";
+import Botlist from "../database/models/Botlist";
 import i18next, { i18n } from 'i18next'
 import LocalesManager from './managers/localesManager.js'
 
@@ -27,6 +28,7 @@ export default class Tom5 extends Client {
     public userDB!: typeof UserDB
     public guildDB!: typeof GuildDB;
     public clientDB!: typeof ClientDB;
+    public botlist!: typeof Botlist;
     public i18next: i18n
     public locales: LocalesManager
 
@@ -70,6 +72,7 @@ export default class Tom5 extends Client {
         this.userDB = UserDB
         this.guildDB = GuildDB
         this.clientDB = ClientDB
+        this.botlist = Botlist
         this.i18next = i18next
         this.locales = new LocalesManager(this)
     }
