@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ApplicationCommandOptionType, ApplicationCommandType, ComponentType, EmbedBuilder, Message, StringSelectMenuBuilder, StringSelectMenuComponent, StringSelectMenuOptionBuilder } from "discord.js";
-import { Track, UnresolvedTrack } from "vulkava";
+import { Track, UnresolvedTrack } from "../../../libs/vulkava";
 import Command from "../../../classes/command";
 import Tom5 from "../../../classes/Tom5";
 import { CtxType } from "../../../types/context";

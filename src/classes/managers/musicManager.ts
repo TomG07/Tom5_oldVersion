@@ -1,205 +1,208 @@
-// import chalk from "chalk";
-// import { Channel, ChannelType, EmbedBuilder, flatten, Message, VoiceBasedChannel, VoiceChannel } from "discord.js";
-// import { Query } from "mongoose";
-// import { Player, Vulkava } from "vulkava"
-// import Guild from "../../database/models/Guild";
-// import SpotifyManager from "../../functions/spotify";
-// import Tom5 from "../Tom5";
-// import { stringify } from "flatted"
+import chalk from "chalk";
+import { Channel, ChannelType, EmbedBuilder, flatten, Message, VoiceBasedChannel, VoiceChannel } from "discord.js";
+import { Player, Vulkava } from "../../libs/vulkava"
+import Guild from "../../database/models/Guild";
+import SpotifyManager from "../../functions/spotify";
+import Tom5 from "../Tom5";
 
-// export enum PlayerStatus {
-//     Playing = 1,
-//     Paused = 2,
-//     Destroyed = 3
-// }
+export enum PlayerStatus {
+    Playing = 1,
+    Paused = 2,
+    Destroyed = 3
+}
 
-// export default class MusicManager extends Vulkava {
+export default class MusicManager extends Vulkava {
 
-//     client: Tom5
-//     spotify: SpotifyManager;
-//     playersArray: Array<Player>
+    client: Tom5
+    spotify: SpotifyManager;
+    playersArray: Array<Player>
 
-//     constructor(client: Tom5, spotify: SpotifyManager) {
-//         super(
-//             {
-//                 nodes: [
-//                     {
-//                         hostname: "localhost",
-//                         port: 8080,
-//                         id: "Verão",
-//                         maxRetryAttempts: 300,
-//                         password: "tomasfrazao2007",
-//                         region: "EU",
-//                         secure: false,
-//                         followRedirects: true,
-//                         resumeKey: "resuming",
-//                         resumeTimeout: 240_000
-//                     }
-//                 ],
+    constructor(client: Tom5, spotify: SpotifyManager) {
+        super(
+            {
+                nodes: [
+                    {
+                        hostname: "localhost",
+                        port: 8888,
+                        id: "Verão",
+                        maxRetryAttempts: 300,
+                        password: "tomasfrazao2007",
+                        region: "EU",
+                        secure: false,
+                        followRedirects: true,
+                        resumeKey: "resuming",
+                        resumeTimeout: 240_000
+                    }
+                ],
 
-//                 sendWS(guildId, payload) {
+                sendWS(guildId, payload) {
                     
-//                     const guild = client.guilds.cache.get(guildId)
+                    const guild = client.guilds.cache.get(guildId)
 
-//                     guild?.shard.send(payload)
-//                 },
-//             }
-//         )
-//         this.client = client
-//         this.spotify = spotify
-//         this.playersArray = []
-//     }
+                    guild?.shard.send(payload)
+                },
 
-//     async init() {
+                spotify: {
+                    clientId: "12d50311638d45a8921a9f340b1fdee9",
+                    clientSecret: "66e2802bf29944218d91ac46ecae18f3",
+                }
+            }
+        )
+        this.client = client
+        this.spotify = spotify
+        this.playersArray = []
+    }
 
-//         this.client.on("raw", (x) => {
-//             this.handleVoiceUpdate(x)
-//         })
+    async init() {
 
-//         this.start(`${this.client.user?.id}`)
+        this.client.on("raw", (x) => {
+            this.handleVoiceUpdate(x)
+        })
 
-//         let endQueue: NodeJS.Timeout | null;
+        this.start(`${this.client.user?.id}`)
 
-//         // this.on("nodeConnect", async (node) => {
-//         //     console.log(chalk.green("[LAVALINK - NODES]"), `- ${node.identifier} conectado`)
+        let endQueue: NodeJS.Timeout | null;
 
-//         //     // let guilds = await this.client.guildDB.find({ player: !null })
+        this.on("nodeConnect", async (node) => {
+            console.log(chalk.green("[LAVALINK - NODES]"), `- ${node.identifier} conectado`)
 
-//         //     // if(guilds.length > 0) {
-//         //     //     for(let i = 0; i < guilds.length; i++) {
+            // let guilds = await this.client.guildDB.find({ player: !null })
 
-//         //     //         let guild = await this.client.guilds.fetch(guilds[i].guildId)
+            // if(guilds.length > 0) {
+            //     for(let i = 0; i < guilds.length; i++) {
 
-//         //     //         let player = this.client.vulkava.createPlayer({
-//         //     //             guildId: guild.id,
-//         //     //             queue: guilds[i].player?.queue,
-//         //     //             selfDeaf: guilds[i].player?.selfDeaf,
-//         //     //             selfMute: guilds[i].player?.selfMute,
-//         //     //             textChannelId: guilds[i].player.textChannelId,
-//         //     //             voiceChannelId: guilds[i].player.voiceChannelId,
-//         //     //         })
+            //         let guild = await this.client.guilds.fetch(guilds[i].guildId)
 
-//         //     //         player.setTrackLoop(guilds[i].player.trackRepeat)
-//         //     //         player.setQueueLoop(guilds[i].player.queueRepeat)
-//         //     //         player.filters.set(guilds[i].player.filters.options)
-//         //     //         player.lastPlayerMessageId = guilds[i].player.lastPlayerMessageId
-//         //     //         player.node = guilds[i].player.node
+            //         let player = this.client.vulkava.createPlayer({
+            //             guildId: guild.id,
+            //             queue: guilds[i].player?.queue,
+            //             selfDeaf: guilds[i].player?.selfDeaf,
+            //             selfMute: guilds[i].player?.selfMute,
+            //             textChannelId: guilds[i].player.textChannelId,
+            //             voiceChannelId: guilds[i].player.voiceChannelId,
+            //         })
 
-//         //     //         player.connect()
+            //         player.setTrackLoop(guilds[i].player.trackRepeat)
+            //         player.setQueueLoop(guilds[i].player.queueRepeat)
+            //         player.filters.set(guilds[i].player.filters.options)
+            //         player.lastPlayerMessageId = guilds[i].player.lastPlayerMessageId
+            //         player.node = guilds[i].player.node
 
-//         //     //         player.play({
-//         //     //             startTime: guilds[i].player.position,
-//         //     //             pause: guilds[i].player.paused
-//         //     //         })
-//         //     //     }
-//         //     // }
-//         // })
+            //         player.connect()
 
-//         // this.on("nodeDisconnect", (node, code, reaosn) => {
-//         //     console.log(chalk.red.bold("[LAVALINK - NODES]"), `- ${node.identifier} desconectado.\n\nCódigo de erro: ${code}\n\nMotivo: ${reaosn}`)
-//         // })
+            //         player.play({
+            //             startTime: guilds[i].player.position,
+            //             pause: guilds[i].player.paused
+            //         })
+            //     }
+            // }
+        })
 
-//         this.on("pong", (node) => {
-//             console.log(chalk.green("[LAVALINK]"), `- Pong recebido do node ${node.identifier}`)
-//         })
+        this.on("nodeDisconnect", (node, code, reaosn) => {
+            console.log(chalk.red.bold("[LAVALINK - NODES]"), `- ${node.identifier} desconectado.\n\nCódigo de erro: ${code}\n\nMotivo: ${reaosn}`)
+        })
 
-//         // this.on("error", (node, error) => {
-//         //     console.log(chalk.red.bold("[LAVALINK - ERRO]"), `- ${node.identifier} não conectado.\n\nErro: ${error.message}`)
-//         // })
+        this.on("pong", (node) => {
+            console.log(chalk.green("[LAVALINK]"), `- Pong recebido do node ${node.identifier}`)
+        })
 
-//         this.on("warn", (node, warn) => {
-//             console.log(chalk.yellow.bold("[LAVALINK - AVISO]"), `- ${node.identifier} avisado.\n\nAviso: ${warn}`)
-//         })
+        // this.on("error", (node, error) => {
+        //     console.log(chalk.red.bold("[LAVALINK - ERRO]"), `- ${node.identifier} não conectado.\n\nErro: ${error.message}`)
+        // })
 
-//         this.on("trackStart", async (player: Player, track) => {
+        this.on("warn", (node, warn) => {
+            console.log(chalk.yellow.bold("[LAVALINK - AVISO]"), `- ${node.identifier} avisado.\n\nAviso: ${warn}`)
+        })
 
-//             const playerChannel: Channel | any = this.client.channels.cache.get(player.textChannelId || "")
+        this.on("trackStart", async (player: Player, track) => {
 
-//             var lastPlayerMessageId = await this.client.guildDB.findOne({ guildId: player.guildId }).then(x => x?.player?.lastPlayerMessageId)
+            const playerChannel: Channel | any = this.client.channels.cache.get(player.textChannelId || "")
 
-//             if(lastPlayerMessageId) {
+            var lastPlayerMessageId = await this.client.guildDB.findOne({ guildId: player.guildId }).then(x => x?.player?.lastPlayerMessageId)
 
-//                 const msg: Message = playerChannel.messages.cache.get(lastPlayerMessageId)
+            if(lastPlayerMessageId) {
 
-//                 if(msg) msg.delete()
-//             }
+                const msg: Message = playerChannel.messages.cache.get(lastPlayerMessageId)
 
-//             lastPlayerMessageId = await playerChannel.send({
-//                 embeds: [
-//                     new EmbedBuilder()
-//                     .setColor("#2a2d31")
-//                     .setDescription(`**(<:tom5_playing_now:1023251385019531275>) [${track.title.substring(0, 40)}](${track.uri}) começou a tocar.**`)
-//                 ]
-//             }).then((msg: Message) => msg.id)
+                if(msg) msg.delete()
+            }
 
-//             await this.client.guildDB.findOneAndUpdate(
-//                 { 
-//                     guildId: player.guildId 
-//                 }, 
-//                 { 
-//                     player: { 
-//                         lastPlayerMessageId: lastPlayerMessageId 
-//                     } 
-//                 }
-//             )
+            lastPlayerMessageId = await playerChannel.send({
+                embeds: [
+                    new EmbedBuilder()
+                    .setColor("#2a2d31")
+                    .setDescription(`**(<:tom5_playing_now:1023251385019531275>) [${track.title.substring(0, 40)}](${track.uri}) começou a tocar.**`)
+                ]
+            }).then((msg: Message) => msg.id)
 
-//             if(endQueue) clearTimeout(endQueue)
+            await this.client.guildDB.findOneAndUpdate(
+                { 
+                    guildId: player.guildId 
+                }, 
+                { 
+                    player: { 
+                        lastPlayerMessageId: lastPlayerMessageId 
+                    } 
+                }
+            )
 
-//         })
+            if(endQueue) clearTimeout(endQueue)
 
-//         this.on("trackStuck", (player, track, thresholdMs) => {
-//             console.log(chalk.red("[LAVALINK]"), `- ${track.title} stuck. ${thresholdMs}`)
-//         })
+        })
 
-//         this.on("trackException", (player, track, exceptio) => {
-//             console.log(chalk.red("[LAVALINK]"), `- ${track.title} ${exceptio}`)
-//         })
+        this.on("trackStuck", (player, track, thresholdMs) => {
+            console.log(chalk.red("[LAVALINK]"), `- ${track.title} stuck. ${thresholdMs}`)
+        })
 
-//         this.on("queueEnd", (player) => {
+        this.on("trackException", (player, track, exceptio) => {
+            console.log(chalk.red("[LAVALINK]"), `- ${track.title} ${exceptio}`)
+        })
 
-//             let canal: Channel | any = this.client.guilds.cache.get(player.guildId)?.channels.cache.get(player.textChannelId || "")
+        this.on("queueEnd", (player) => {
 
-//             canal.send({
-//                 embeds: [
-//                     new EmbedBuilder()
-//                     .setColor("#2a2d31")
-//                     .setDescription(`**(${this.client._emojis.load}) Vou sair do canal se não me utilizarem após 2 minutos**`)
-//                 ]
-//             })
+            let canal: Channel | any = this.client.guilds.cache.get(player.guildId)?.channels.cache.get(player.textChannelId || "")
 
-//             endQueue = setTimeout(() => {
+            canal.send({
+                embeds: [
+                    new EmbedBuilder()
+                    .setColor("#2a2d31")
+                    .setDescription(`**(${this.client._emojis.load}) Vou sair do canal se não me utilizarem após 2 minutos**`)
+                ]
+            })
 
-//                 player.destroy()
+            endQueue = setTimeout(() => {
 
-//                 endQueue = null
-//             }, 2 * 60000)
-//         })
+                player.destroy()
 
-//         this.on("playerCreate", async (player) => {
+                endQueue = null
+            }, 2 * 60000)
+        })
 
-//             const getCircularReplacer = () => {
-//                 const seen = new WeakSet();
-//                 return (key: any, value: any) => {
-//                     if (typeof value === 'object' && value !== null) {
-//                         if (seen.has(value)) {
-//                             return;
-//                         }
-//                         seen.add(value);
-//                     }
-//                     return value;
-//                 };
-//             };
+        this.on("playerCreate", async (player) => {
 
-//             await this.client.guildDB.findOneAndUpdate(
-//                 {
-//                     guildId: player.guildId
-//                 },
-//                 {
-//                     $set: {
-//                         player: stringify(player, getCircularReplacer())
-//                     }
-//                 }
-//             );           
-//         })
-//     }
-// }
+            // const getCircularReplacer = () => {
+            //     const seen = new WeakSet();
+            //     return (key: any, value: any) => {
+            //         if (typeof value === 'object' && value !== null) {
+            //             if (seen.has(value)) {
+            //                 return;
+            //             }
+            //             seen.add(value);
+            //         }
+            //         return value;
+            //     };
+            // };
+
+            // await this.client.guildDB.findOneAndUpdate(
+            //     {
+            //         guildId: player.guildId
+            //     },
+            //     {
+            //         $set: {
+            //             player: stringify(player, getCircularReplacer())
+            //         }
+            //     }
+            // );     
+        })
+    }
+}
