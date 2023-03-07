@@ -22,7 +22,7 @@ export default class MusicManager extends Vulkava {
             {
                 nodes: [
                     {
-                        hostname: "localhost",
+                        hostname: "tom5.tk",
                         port: 8888,
                         id: "Verão",
                         maxRetryAttempts: 300,
